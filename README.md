@@ -6,9 +6,29 @@
 
 ## 中文说明
 
-NeuBE-Structural-Rebuild 是一个可复用的模板，用于构建从异构证据中重构物理结构的领域型 AI Skill。
+给 AI 一份复杂资料，它通常很快就能给出一个答案。但如果继续追问：依据在哪里？哪一步是观察，哪一步是推测？哪些规则真的验证过？一个判断改变后，哪些结果已经失效？答案往往就不再可靠。
 
-它不是一个已经理解所有工程领域的万能模型。它提供一套通用工作流、数据边界、验证门禁和复核状态，帮助开发者把新的专业领域可靠地教给 AI Agent。
+NeuBE-Structural-Rebuild 从这里开始。它不是让 AI 更大胆地猜一个三维模型，而是让 AI 学会像搭结构积木一样完成重构：先认清每一块证据，再判断它代表什么对象，按照领域规则连接和校验，最后只发布能够说明来路与状态的结果。
+
+它是一套面向物理结构重构的通用 Skill，也是一块可以插接不同 domain pack 的底板。建筑框架、桥梁、桁架、设备支撑和角钢塔可以共享同一套证据链与质量门禁，同时拥有各自的构件类型、连接规则、求解器和验收标准。
+
+> **重建结构，也重建结构背后的推理。**
+>
+> **Rebuild the structure. Rebuild the reasoning behind it.**
+
+### 像搭积木一样教会 AI 一个结构领域
+
+一盒积木之所以能搭出不同结构，不是因为每个模型都从零发明，而是因为它有稳定的连接方式、可替换的组件和明确的装配规则。NeuBE 采用同样的思路：
+
+| 结构积木 | 在 Skill 中的含义 |
+| --- | --- |
+| 底板 | 来源、观察、假设、语义、约束、复核和输出的通用工作流 |
+| 基础块 | 稳定 ID、证据引用、坐标系、状态和依赖关系 |
+| Domain pack | 某类结构的构件本体、连接规则、容差、求解器和验证器 |
+| 专业套件 | 建筑、桥梁、桁架、设备支撑或角钢塔等具体 Skill |
+| 拼装说明 | 专家复核权限、质量门禁、成熟度和发布规则 |
+
+这个类比不表示结构工程像玩具一样简单。恰恰相反，它强调复杂系统必须由可识别、可组合、可验证的模块构成。通用 Skill 负责约束拼装过程，domain pack 负责提供专业零件和规则，工程师负责不能由程序代替的决定。
 
 ### 核心思想
 
@@ -120,9 +140,27 @@ OK: assets/synthetic-frame-example.json is a valid public structure reconstructi
 
 ## English
 
-NeuBE-Structural-Rebuild is a reusable template for building domain-specific AI skills that reconstruct physical structures from heterogeneous evidence.
+Give an AI a complex set of files and it can usually produce an answer quickly. Ask where the answer came from, which step was observation rather than inference, which rules were actually checked, or which outputs became stale after a decision changed, and the answer often becomes much less reliable.
 
-It is not a universal model that already understands every engineering domain. It provides the common workflow, data boundaries, validation gates, and review states needed to teach an AI agent a new reconstruction domain safely.
+NeuBE-Structural-Rebuild starts with that problem. It does not encourage an AI to guess a more convincing 3D model. It teaches the agent to reconstruct a structure as if assembling a modular building system: identify each piece of evidence, decide what physical object it may represent, connect it under domain rules, validate the assembly, and publish only outputs whose provenance and state can be explained.
+
+It is both a general skill for physical-structure reconstruction and a baseplate for interchangeable domain packs. Building frames, bridges, trusses, equipment supports, and angle towers can share the same evidence chain and quality gates while supplying their own element types, connection rules, solvers, and acceptance criteria.
+
+> **Rebuild the structure. Rebuild the reasoning behind it.**
+
+### Teaching a structural domain through modular building blocks
+
+A modular construction kit can produce different structures because it provides stable interfaces, interchangeable components, and explicit assembly rules. NeuBE follows the same pattern:
+
+| Building block | Meaning in the skill |
+| --- | --- |
+| Baseplate | The shared source, observation, hypothesis, semantics, constraint, review, and output workflow |
+| Basic blocks | Stable IDs, evidence references, coordinate frames, states, and dependencies |
+| Domain pack | A structure family's ontology, connection rules, tolerances, solvers, and validators |
+| Specialized kit | A building, bridge, truss, equipment-support, or angle-tower skill |
+| Assembly guide | Review authority, quality gates, maturity levels, and release rules |
+
+The analogy does not mean structural engineering is as simple as a toy. It means that complex systems need identifiable, composable, and testable parts. The generic skill governs how parts may be assembled, a domain pack supplies professional components and rules, and engineers retain decisions that cannot be delegated to software.
 
 ## The core idea
 
