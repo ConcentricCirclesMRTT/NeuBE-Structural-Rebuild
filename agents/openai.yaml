@@ -1,0 +1,4 @@
+interface:
+  display_name: "NeuBE-Structural-Rebuild"
+  short_description: "Traceable reconstruction of physical structures from evidence"
+  default_prompt: "Use $general-structure-reconstruction to reconstruct this physical structure as a traceable, reviewable engineering model."

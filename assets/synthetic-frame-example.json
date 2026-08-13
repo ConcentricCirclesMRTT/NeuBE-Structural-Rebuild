@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0-public",
+  "project": {"id": "DEMO-FRAME-A", "structure_class": "single-bay-frame", "data_class": "synthetic_or_redistributable", "target_maturity": "coordination"},
+  "sources": [
+    {"id": "SRC-PLAN", "source_type": "drawing", "uri": "synthetic-frame-plan.pdf", "revision": "A", "license_status": "synthetic"},
+    {"id": "SRC-SCAN", "source_type": "point_cloud", "uri": "synthetic-frame-scan.ply", "revision": "A", "license_status": "synthetic"}
+  ],
+  "observations": [
+    {"id": "OBS-001", "source_ref": "SRC-PLAN", "frame": "drawing-page-1", "kind": "dimension", "raw": {"value": 4000, "unit": "mm"}, "confidence": 1.0},
+    {"id": "OBS-002", "source_ref": "SRC-SCAN", "frame": "scan-local", "kind": "linear-cluster", "raw": {"axis": [[0, 0, 0], [0, 0, 3000]]}, "confidence": 0.97}
+  ],
+  "hypotheses": [
+    {"id": "HYP-001", "claim": "The vertical scan cluster represents column E-01.", "observation_refs": ["OBS-002"], "status": "accepted"}
+  ],
+  "semantic_model": {
+    "elements": [
+      {"id": "E-01", "element_type": "column", "material_system": "unspecified", "observation_refs": ["OBS-002"]},
+      {"id": "E-02", "element_type": "column", "material_system": "unspecified", "observation_refs": ["OBS-001"]},
+      {"id": "E-03", "element_type": "beam", "material_system": "unspecified", "observation_refs": ["OBS-001"]}
+    ],
+    "joints": [{"id": "J-01", "element_refs": ["E-01", "E-03"], "observation_refs": ["OBS-001"]}],
+    "assemblies": [{"id": "A-01", "element_refs": ["E-01", "E-02", "E-03"], "observation_refs": ["OBS-001", "OBS-002"]}],
+    "interfaces": []
+  },
+  "constraints": [{"id": "C-001", "kind": "column-spacing", "entity_refs": ["E-01", "E-02"], "value": 4000, "unit": "mm", "residual": 0.4, "tolerance": 2.0, "status": "passed"}],
+  "reviews": [],
+  "outputs": [{"id": "OUT-01", "kind": "coordination-model", "maturity": "coordination", "status": "current", "input_refs": ["HYP-001", "C-001"]}]
+}

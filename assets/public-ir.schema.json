@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/general-structure/public-ir.schema.json",
+  "title": "NeuBE Structural Rebuild Public IR",
+  "type": "object",
+  "required": ["schema_version", "project", "sources", "observations", "hypotheses", "semantic_model", "constraints", "reviews", "outputs"],
+  "properties": {
+    "schema_version": {"const": "1.0-public"},
+    "project": {
+      "type": "object",
+      "required": ["id", "structure_class", "data_class", "target_maturity"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^DEMO-[A-Z0-9-]+$"},
+        "structure_class": {"type": "string", "minLength": 1},
+        "data_class": {"const": "synthetic_or_redistributable"},
+        "target_maturity": {"enum": ["concept", "coordination"]}
+      },
+      "additionalProperties": true
+    },
+    "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}},
+    "observations": {"type": "array", "items": {"$ref": "#/$defs/observation"}},
+    "hypotheses": {"type": "array", "items": {"$ref": "#/$defs/hypothesis"}},
+    "semantic_model": {
+      "type": "object",
+      "required": ["elements", "joints", "assemblies", "interfaces"],
+      "properties": {
+        "elements": {"type": "array", "items": {"$ref": "#/$defs/element"}},
+        "joints": {"type": "array", "items": {"$ref": "#/$defs/entity"}},
+        "assemblies": {"type": "array", "items": {"$ref": "#/$defs/entity"}},
+        "interfaces": {"type": "array", "items": {"$ref": "#/$defs/entity"}}
+      },
+      "additionalProperties": true
+    },
+    "constraints": {"type": "array", "items": {"$ref": "#/$defs/constraint"}},
+    "reviews": {"type": "array", "items": {"$ref": "#/$defs/review"}},
+    "outputs": {"type": "array", "items": {"$ref": "#/$defs/output"}}
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["id", "source_type", "uri", "revision", "license_status"],
+      "properties": {
+        "id": {"type": "string"},
+        "source_type": {"enum": ["drawing", "image", "point_cloud", "schedule", "inspection_record", "engineering_note", "model"]},
+        "uri": {"type": "string"}, "revision": {"type": "string"},
+        "license_status": {"enum": ["synthetic", "redistributable"]}
+      },
+      "additionalProperties": true
+    },
+    "entity": {
+      "type": "object",
+      "required": ["id", "observation_refs"],
+      "properties": {"id": {"type": "string", "minLength": 1}, "observation_refs": {"type": "array", "items": {"type": "string"}}},
+      "additionalProperties": true
+    },
+    "observation": {
+      "type": "object",
+      "required": ["id", "source_ref", "frame", "kind", "raw", "confidence"],
+      "properties": {
+        "id": {"type": "string"}, "source_ref": {"type": "string"}, "frame": {"type": "string"},
+        "kind": {"type": "string"}, "raw": {}, "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    },
+    "hypothesis": {
+      "type": "object",
+      "required": ["id", "claim", "observation_refs", "status"],
+      "properties": {
+        "id": {"type": "string"}, "claim": {"type": "string"},
+        "observation_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "status": {"enum": ["proposed", "accepted", "rejected", "review_required"]}
+      },
+      "additionalProperties": true
+    },
+    "element": {
+      "allOf": [{"$ref": "#/$defs/entity"}, {"type": "object", "required": ["element_type"], "properties": {"element_type": {"type": "string"}, "material_system": {"type": "string"}}}]
+    },
+    "constraint": {
+      "type": "object",
+      "required": ["id", "kind", "entity_refs", "status"],
+      "properties": {
+        "id": {"type": "string"}, "kind": {"type": "string"},
+        "entity_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "status": {"enum": ["pending", "passed", "failed", "review_required"]},
+        "residual": {"type": "number", "minimum": 0}, "tolerance": {"type": "number", "exclusiveMinimum": 0}
+      },
+      "additionalProperties": true
+    },
+    "review": {
+      "type": "object",
+      "required": ["id", "question", "observation_refs", "status"],
+      "properties": {
+        "id": {"type": "string"}, "question": {"type": "string"},
+        "observation_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "status": {"enum": ["open", "resolved"]}
+      },
+      "additionalProperties": true
+    },
+    "output": {
+      "type": "object",
+      "required": ["id", "kind", "maturity", "status", "input_refs"],
+      "properties": {
+        "id": {"type": "string"}, "kind": {"type": "string"},
+        "maturity": {"enum": ["concept", "coordination"]},
+        "status": {"enum": ["current", "stale", "blocked"]},
+        "input_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
