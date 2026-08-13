@@ -6,11 +6,17 @@
 
 ## 中文说明
 
-给 AI 一份复杂资料，它通常很快就能给出一个答案。但如果继续追问：依据在哪里？哪一步是观察，哪一步是推测？哪些规则真的验证过？一个判断改变后，哪些结果已经失效？答案往往就不再可靠。
+桌上有一摞几十年前的工程图。没有三维模型，没有完整数据库，只有平面图、剖面、尺寸、材料表和工程师留下的符号。
 
-NeuBE-Structural-Rebuild 从这里开始。它不是让 AI 更大胆地猜一个三维模型，而是让 AI 学会像搭结构积木一样完成重构：先认清每一块证据，再判断它代表什么对象，按照领域规则连接和校验，最后只发布能够说明来路与状态的结果。
+AI 几秒钟就生成了一座漂亮的三维结构。问题是：**你敢拿它去施工、检修或改造吗？**
 
-它是一套面向物理结构重构的通用 Skill，也是一块可以插接不同 domain pack 的底板。建筑框架、桥梁、桁架、设备支撑和角钢塔可以共享同一套证据链与质量门禁，同时拥有各自的构件类型、连接规则、求解器和验收标准。
+真正的问题不是模型够不够像，而是没人能回答：这根构件来自哪张图？这个尺寸是事实还是推测？哪些连接规则真的验证过？如果一个判断改变，哪些结果必须作废？
+
+NeuBE-Structural-Rebuild 不让 AI 猜成品。它让 AI 像搭结构积木一样工作：先把散落的信息整理成证据块，再建立构件与连接，按照领域规则逐步拼装。缺少证据、违反约束或存在高后果歧义时，模型必须停下来等待复核。
+
+通用 Skill 是底板，domain pack 是专业积木。建筑框架、桥梁、桁架和设备支撑可以换用不同套件，同时共享一套证据链、依赖关系和质量门禁。
+
+我们选择角钢塔作为第一盒挑战套装。它拥有大量相似杆件、重叠投影和严格连接关系：生成一个“看起来像”的结果很容易，证明每一根构件为什么在那里却很难。如果这套方法能在这里分清证据、约束和歧义，它才有资格成为结构重构的通用底板。
 
 > **重建结构，也重建结构背后的推理。**
 >
@@ -71,9 +77,9 @@ AI 负责提出有边界的解释候选；领域工具负责求解和验证确�
 
 同一模式可以用于建筑框架、桥梁、桁架、设备支撑、工业装配体，也可以迁移到具有类似“证据到决策”流程的非结构专业领域。
 
-### 角钢塔重构：验证案例
+### 第一盒挑战套装：角钢塔重构
 
-角钢塔重构是该模板的一个领域特例，而不是模板本身的定义。
+我们没有从一个简单房间或一把椅子开始，而是主动选择角钢塔作为压力测试。角钢塔重构是该模板的一个领域特例，而不是模板本身的定义。
 
 它适合作为验证案例，因为其中同时存在：
 
@@ -140,11 +146,17 @@ OK: assets/synthetic-frame-example.json is a valid public structure reconstructi
 
 ## English
 
-Give an AI a complex set of files and it can usually produce an answer quickly. Ask where the answer came from, which step was observation rather than inference, which rules were actually checked, or which outputs became stale after a decision changed, and the answer often becomes much less reliable.
+On the table is a stack of engineering drawings from decades ago. There is no 3D model and no complete database, only plans, sections, dimensions, schedules, and symbols left by engineers.
 
-NeuBE-Structural-Rebuild starts with that problem. It does not encourage an AI to guess a more convincing 3D model. It teaches the agent to reconstruct a structure as if assembling a modular building system: identify each piece of evidence, decide what physical object it may represent, connect it under domain rules, validate the assembly, and publish only outputs whose provenance and state can be explained.
+An AI produces a beautiful 3D structure in seconds. The question is: **would you trust it for construction, inspection, or modification?**
 
-It is both a general skill for physical-structure reconstruction and a baseplate for interchangeable domain packs. Building frames, bridges, trusses, equipment supports, and angle towers can share the same evidence chain and quality gates while supplying their own element types, connection rules, solvers, and acceptance criteria.
+The real problem is not whether the model looks right. It is whether anyone can answer: Which drawing supports this member? Is this dimension observed or inferred? Which connection rules were actually checked? If one decision changes, which outputs must be invalidated?
+
+NeuBE-Structural-Rebuild does not ask the AI to guess the finished model. It makes the agent work as if assembling structural building blocks: organize scattered information into evidence blocks, establish elements and connections, and assemble them under domain rules. When evidence is missing, a constraint fails, or an ambiguity carries real consequences, the model must stop for review.
+
+The general skill is the baseplate; domain packs provide the professional pieces. Building frames, bridges, trusses, and equipment supports can use different kits while sharing one evidence chain, dependency model, and set of quality gates.
+
+We chose angle-tower reconstruction as the first challenge kit. Its many similar members, overlapping projections, and strict connection relationships make a plausible-looking result easy to generate and each member's placement difficult to prove. If the method can separate evidence, constraints, and ambiguity here, it earns the right to serve as a reusable baseplate for structural reconstruction.
 
 > **Rebuild the structure. Rebuild the reasoning behind it.**
 
@@ -203,9 +215,9 @@ A suitable domain is one where practitioners can define:
 
 The same pattern can support building frames, bridges, trusses, equipment supports, industrial assemblies, or non-structural professional domains with an equivalent evidence-to-decision workflow.
 
-## Angle-tower reconstruction as a proof case
+## The first challenge kit: angle-tower reconstruction
 
-Angle-tower reconstruction is one domain-specific instance of this template, not the definition of the template itself.
+We did not begin with a simple room or a chair. We deliberately chose an angle tower as a stress test. Angle-tower reconstruction is one domain-specific instance of this template, not the definition of the template itself.
 
 It is a useful validation case because it combines:
 
