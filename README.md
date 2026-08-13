@@ -16,8 +16,6 @@ NeuBE-Structural-Rebuild 不让 AI 猜成品。它让 AI 像搭结构积木一�
 
 通用 Skill 是底板，domain pack 是专业积木。建筑框架、桥梁、桁架和设备支撑可以换用不同套件，同时共享一套证据链、依赖关系和质量门禁。
 
-我们选择角钢塔作为第一盒挑战套装。它拥有大量相似杆件、重叠投影和严格连接关系：生成一个“看起来像”的结果很容易，证明每一根构件为什么在那里却很难。如果这套方法能在这里分清证据、约束和歧义，它才有资格成为结构重构的通用底板。
-
 > **重建结构，也重建结构背后的推理。**
 >
 > **Rebuild the structure. Rebuild the reasoning behind it.**
@@ -31,7 +29,7 @@ NeuBE-Structural-Rebuild 不让 AI 猜成品。它让 AI 像搭结构积木一�
 | 底板 | 来源、观察、假设、语义、约束、复核和输出的通用工作流 |
 | 基础块 | 稳定 ID、证据引用、坐标系、状态和依赖关系 |
 | Domain pack | 某类结构的构件本体、连接规则、容差、求解器和验证器 |
-| 专业套件 | 建筑、桥梁、桁架、设备支撑或角钢塔等具体 Skill |
+| 专业套件 | 建筑、桥梁、桁架或设备支撑等具体 Skill |
 | 拼装说明 | 专家复核权限、质量门禁、成熟度和发布规则 |
 
 这个类比不表示结构工程像玩具一样简单。恰恰相反，它强调复杂系统必须由可识别、可组合、可验证的模块构成。通用 Skill 负责约束拼装过程，domain pack 负责提供专业零件和规则，工程师负责不能由程序代替的决定。
@@ -77,30 +75,11 @@ AI 负责提出有边界的解释候选；领域工具负责求解和验证确�
 
 同一模式可以用于建筑框架、桥梁、桁架、设备支撑、工业装配体，也可以迁移到具有类似“证据到决策”流程的非结构专业领域。
 
-### 第一盒挑战套装：角钢塔重构
+### 方法从哪里来
 
-我们没有从一个简单房间或一把椅子开始，而是主动选择角钢塔作为压力测试。角钢塔重构是该模板的一个领域特例，而不是模板本身的定义。
+这套方法最初形成于角钢塔重构任务。密集的多视图图纸、相似构件、重叠投影和严格连接关系让“生成一个看起来合理的模型”很容易，而“证明每根构件为什么在那里”很难。
 
-它适合作为验证案例，因为其中同时存在：
-
-- 密集的多视图工程图纸；
-- 投影重合但可能代表不同物理实体的构件；
-- 结构拓扑、共享节点和复杂连接；
-- 方向、对称、尺寸与几何约束；
-- 必须由专家处理的高后果歧义；
-- 上游判断改变后必须失效的 CAD 与制造制品。
-
-在角钢塔 Skill 中，通用语义实体会被专业化为构件、节点、结构面、连接组件、孔和紧固件；通用约束会被专业化为结构面关联、构件方向、长度闭合、孔型、连接叠层和制造检查。这些专业规则应当属于独立的领域包，因此不会出现在本公开通用模板中。
-
-三者关系如下：
-
-```text
-领域 Skill 通用模板
-  -> 结构重构模板
-      -> 角钢塔重构 Skill
-```
-
-角钢塔案例用于证明：该模板能够组织真实的领域推理、确定性程序、专家决定和可追溯输出。它并不意味着一个通用提示词可以在没有专业化的情况下解决所有领域。
+这个压力测试帮助我们提炼出可复用的核心：证据与解释分离、稳定实体身份、领域约束、人工复核以及下游失效传播。公开仓库只保留这些通用方法，不包含真实项目数据或专有制造规则。
 
 ### 创建新的领域版本
 
@@ -156,8 +135,6 @@ NeuBE-Structural-Rebuild does not ask the AI to guess the finished model. It mak
 
 The general skill is the baseplate; domain packs provide the professional pieces. Building frames, bridges, trusses, and equipment supports can use different kits while sharing one evidence chain, dependency model, and set of quality gates.
 
-We chose angle-tower reconstruction as the first challenge kit. Its many similar members, overlapping projections, and strict connection relationships make a plausible-looking result easy to generate and each member's placement difficult to prove. If the method can separate evidence, constraints, and ambiguity here, it earns the right to serve as a reusable baseplate for structural reconstruction.
-
 > **Rebuild the structure. Rebuild the reasoning behind it.**
 
 ### Teaching a structural domain through modular building blocks
@@ -169,7 +146,7 @@ A modular construction kit can produce different structures because it provides 
 | Baseplate | The shared source, observation, hypothesis, semantics, constraint, review, and output workflow |
 | Basic blocks | Stable IDs, evidence references, coordinate frames, states, and dependencies |
 | Domain pack | A structure family's ontology, connection rules, tolerances, solvers, and validators |
-| Specialized kit | A building, bridge, truss, equipment-support, or angle-tower skill |
+| Specialized kit | A building, bridge, truss, or equipment-support skill |
 | Assembly guide | Review authority, quality gates, maturity levels, and release rules |
 
 The analogy does not mean structural engineering is as simple as a toy. It means that complex systems need identifiable, composable, and testable parts. The generic skill governs how parts may be assembled, a domain pack supplies professional components and rules, and engineers retain decisions that cannot be delegated to software.
@@ -215,30 +192,11 @@ A suitable domain is one where practitioners can define:
 
 The same pattern can support building frames, bridges, trusses, equipment supports, industrial assemblies, or non-structural professional domains with an equivalent evidence-to-decision workflow.
 
-## The first challenge kit: angle-tower reconstruction
+## Where the method came from
 
-We did not begin with a simple room or a chair. We deliberately chose an angle tower as a stress test. Angle-tower reconstruction is one domain-specific instance of this template, not the definition of the template itself.
+This method grew out of an angle-tower reconstruction task. Dense multi-view drawings, similar members, overlapping projections, and strict connection relationships make it easy to generate a plausible model and difficult to prove why every member belongs where it does.
 
-It is a useful validation case because it combines:
-
-- dense multi-view engineering drawings;
-- projected members that can represent different physical instances;
-- structural topology and shared connections;
-- orientation, symmetry, dimension, and geometry constraints;
-- high-consequence ambiguity that should require expert review;
-- downstream CAD and manufacturing artifacts that must become stale after upstream changes.
-
-In an angle-tower skill, the generic semantic entities become members, nodes, structural faces, connection assemblies, holes, and fasteners. Generic constraints become face incidence, member orientation, length closure, hole pattern, connection stack, and fabrication checks. Those specialized rules belong in the domain package; they are intentionally absent from this public generic template.
-
-This relationship is:
-
-```text
-Domain Skill Template
-  -> Structure Reconstruction Template
-      -> Angle-Tower Reconstruction Skill
-```
-
-The angle-tower case demonstrates that the template can organize real domain reasoning, deterministic programs, review decisions, and traceable outputs. It does not imply that one generic prompt can solve every domain without specialization.
+That stress test helped us extract the reusable core: separation of evidence and interpretation, stable entity identity, domain constraints, human review, and downstream invalidation. This public repository contains those general methods, not real project data or proprietary fabrication rules.
 
 ## Create a domain-specific version
 
