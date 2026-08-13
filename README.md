@@ -2,6 +2,8 @@
 
 **Neural Building Engine Structural Rebuild**
 
+![Engineering evidence is assembled into a traceable structural model](assets/neube-structural-rebuild-banner.png)
+
 [中文](#中文说明) | [English](#english)
 
 ## 中文说明
