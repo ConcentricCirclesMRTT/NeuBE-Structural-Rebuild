@@ -1,6 +1,6 @@
 # NeuBE-Structural-Rebuild
 
-**Neural Building Engine Structural Rebuild**
+**Neural Building Engine (NeuBE) Structural Rebuild**
 
 ### Build Everything in 3D. Precisely.
 
