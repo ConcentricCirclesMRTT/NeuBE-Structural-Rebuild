@@ -24,6 +24,23 @@ NeuBE-Structural-Rebuild 不让 AI 猜成品。它让 AI 像搭结构积木一�
 
 通用 Skill 是底板，domain pack 是专业积木。建筑框架、桥梁、桁架和设备支撑可以换用不同套件，同时共享一套证据链、依赖关系和质量门禁。
 
+### 只要你的行业有图纸，就值得拥有自己的 Domain Pack
+
+结构图只是起点。建筑、桥梁、铁路、船舶、机械设备、工业管线、文物建筑、舞台装置乃至任何依靠图纸理解实体的行业，都有自己的符号、术语、连接方式和“老师傅一眼就知道不对”的判断。
+
+这些知识不应该永远停留在个人经验里，也不应该被压缩成一句含糊的 Prompt。NeuBE 希望邀请各行各业的领域专家，把专业判断变成可以继承、测试和持续改进的 Domain Pack，再由其他人 Fork，构建面向本行业的 Skill、数据集、验证器、三维重构流程和审查工具。
+
+你不需要先成为 AI 或软件专家。一次最小的共创可以从四样东西开始：
+
+1. 一份完全脱敏、合成或明确允许再分发的典型图纸；
+2. 一张行业术语、符号和构件关系表；
+3. 几条“怎样算对、什么情况必须停下来复核”的专业规则；
+4. 一个可由同行判断好坏的预期三维结果。
+
+领域专家定义什么是真的，工具开发者把规则变成可执行工作流，审查者用新案例检验它是否可靠。一个新的领域衍生产品，就从这组三方可以共同检查的约定开始。
+
+> **Bring the drawings. Teach the rules. Build the domain.**
+
 > **重建结构，也重建结构背后的推理。**
 >
 > **Rebuild the structure. Rebuild the reasoning behind it.**
@@ -100,6 +117,8 @@ python3 scripts/init_project.py demo-building \
   --title "Demo Building"
 python3 scripts/validate_workspace.py
 ```
+
+还不确定怎样描述自己的领域？使用 [Domain Pack Proposal](https://github.com/ConcentricCirclesMRTT/NeuBE-Structural-Rebuild/issues/new?template=domain-pack-proposal.yml) 发起一个提案。先讲清图纸、术语、判断规则和预期输出，再与建模、AI 和软件贡献者共同落地。
 
 随后完成四件事：
 
@@ -201,6 +220,23 @@ NeuBE-Structural-Rebuild does not ask the AI to guess the finished model. It mak
 
 The general skill is the baseplate; domain packs provide the professional pieces. Building frames, bridges, trusses, and equipment supports can use different kits while sharing one evidence chain, dependency model, and set of quality gates.
 
+### If your field has drawings, it deserves a domain pack
+
+Structural drawings are only the beginning. Architecture, bridges, railways, shipbuilding, machinery, industrial piping, heritage conservation, stage systems, and every profession that reads drawings to understand physical things has its own symbols, vocabulary, interfaces, and expert sense of what cannot be right.
+
+That knowledge should not remain trapped in individual experience or be compressed into a vague prompt. NeuBE invites domain experts to turn professional judgment into Domain Packs that can be inherited, tested, and improved. Others can then fork them into industry-specific skills, datasets, validators, 3D reconstruction pipelines, and review tools.
+
+You do not need to become an AI or software expert first. A minimum useful collaboration starts with four things:
+
+1. one fully sanitized, synthetic, or explicitly redistributable representative drawing;
+2. a glossary of domain symbols, terms, elements, and relationships;
+3. a few rules that define what is correct and what must stop for review;
+4. an expected 3D result that a peer can evaluate.
+
+Domain experts define what is true. Tool builders turn those rules into executable workflows. Reviewers challenge the result with new cases. A domain-specific product begins with an agreement all three can inspect.
+
+> **Bring the drawings. Teach the rules. Build the domain.**
+
 > **Rebuild the structure. Rebuild the reasoning behind it.**
 
 ### Teaching a structural domain through modular building blocks
@@ -275,6 +311,8 @@ python3 scripts/init_project.py demo-building \
   --title "Demo Building"
 python3 scripts/validate_workspace.py
 ```
+
+Not sure how to describe your field yet? Open a [Domain Pack Proposal](https://github.com/ConcentricCirclesMRTT/NeuBE-Structural-Rebuild/issues/new?template=domain-pack-proposal.yml). Start with the drawings, vocabulary, judgment rules, and expected output, then build it with modeling, AI, and software contributors.
 
 Then complete four steps:
 

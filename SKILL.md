@@ -1,6 +1,6 @@
 ---
 name: general-structure-reconstruction
-description: Build domain-specific structural reconstruction skills and use them to reconstruct physical structures from drawings, images, point clouds, schedules, inspection records, and engineering notes as traceable, reviewable models. Use when a Domain Builder needs to create or extend a domain pack, initialize a reconstruction project, manage evidence and generated files, recover topology and interfaces, validate constraints, review ambiguity, or publish coordination-grade CAD/BIM/digital-twin results. Also use for structural reconstruction templates, domain packs, drawing-to-model, scan-to-model, as-built modeling, 结构重构, 领域模板, 图纸转模型, 逆向建模, 竣工模型, or 工程数字孪生.
+description: Turn expert knowledge from drawing-centered industries into domain-specific reconstruction skills, then use them to reconstruct physical structures from drawings, images, point clouds, schedules, inspection records, and engineering notes as traceable, reviewable 3D models. Use when domain experts and builders need to co-create or extend a domain pack, define terminology and judgment rules, initialize a reconstruction project, manage evidence and generated files, recover topology and interfaces, validate constraints, review ambiguity, or publish CAD/BIM/digital-twin results. Also use for structural reconstruction templates, domain packs, drawing-to-model, scan-to-model, as-built modeling, 行业专家共创, 结构重构, 领域模板, 图纸转模型, 逆向建模, 竣工模型, or 工程数字孪生.
 ---
 
 # NeuBE-Structural-Rebuild
@@ -16,6 +16,14 @@ Build Everything in 3D. Precisely.
 - `Domain Builder`: create or extend reusable ontology, rules, validators, and a domain-specific Skill under `domains/<domain>/`.
 - `Project Builder`: apply one domain pack to evidence and working state under `projects/<project>/`.
 - `Publisher`: promote only reviewed outputs into `releases/<project>/` with hashes and provenance.
+
+## Co-create with domain experts
+
+- Ask experts for a sanitized representative drawing, glossary, acceptance rules, and peer-reviewable target result.
+- Capture literal domain knowledge before translating it into schemas or code.
+- Separate expert authority over meaning and acceptance from tool-builder authority over implementation.
+- Turn repeated expert decisions into ontology entries, deterministic validators, bounded review questions, or evaluation fixtures.
+- Never imply that an expert must write code to propose or review a domain pack.
 
 Read [references/repository-layout.md](references/repository-layout.md) before creating, moving, committing, or publishing project files.
 

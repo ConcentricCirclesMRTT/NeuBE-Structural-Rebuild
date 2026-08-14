@@ -1,0 +1,85 @@
+name: Domain Pack Proposal / 领域包提案
+description: Propose a drawing-centered professional domain without writing code / 无需写代码，提出一个图纸驱动的专业领域
+title: "[Domain]: "
+labels:
+  - domain-proposal
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bring the drawings. Teach the rules. Build the domain.
+
+        请描述行业知识，不必先设计代码。不要上传保密或未获授权的资料。
+  - type: input
+    id: domain
+    attributes:
+      label: Domain / 所属行业
+      description: What profession, structure family, or drawing practice should this pack support?
+      placeholder: Ship structure / 船体结构
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Reconstruction task / 重构任务
+      description: What do practitioners need to reconstruct, and why does the result matter?
+    validations:
+      required: true
+  - type: textarea
+    id: drawings
+    attributes:
+      label: Evidence and drawings / 图纸与证据
+      description: List typical plans, sections, details, schedules, photos, scans, or inspection records. Describe a sanitized example if files cannot be shared.
+    validations:
+      required: true
+  - type: textarea
+    id: vocabulary
+    attributes:
+      label: Expert vocabulary / 专业术语
+      description: List important symbols, entities, attributes, relationships, and drawing conventions.
+    validations:
+      required: true
+  - type: textarea
+    id: rules
+    attributes:
+      label: Acceptance rules / 判断与验收规则
+      description: Give at least three rules for what is correct, impossible, or must stop for expert review.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Expected result / 预期结果
+      description: What 3D model, semantic model, report, or review tool should this domain produce?
+    validations:
+      required: true
+  - type: dropdown
+    id: data_class
+    attributes:
+      label: Example data classification / 示例数据分类
+      options:
+        - Synthetic / 完全合成
+        - Redistributable with recorded permission / 已获再分发授权
+        - Private description only; no files / 仅描述私有案例，不提供文件
+    validations:
+      required: true
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: How would you like to contribute? / 希望如何参与
+      multiple: true
+      options:
+        - Explain domain knowledge / 提供行业知识
+        - Review results / 审查结果
+        - Provide a sanitized example / 提供脱敏样例
+        - Implement the Domain Pack / 实现领域包
+        - Build tools or integrations / 开发工具或集成
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check / 安全确认
+      options:
+        - label: I will not submit confidential, identifying, or unlicensed project material. / 我不会提交保密、可识别或未获授权的项目资料。
+          required: true
