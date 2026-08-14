@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "id": "project-template",
+  "title": "Project Template",
+  "domain_ref": "domain-template",
+  "data_class": "synthetic",
+  "target_maturity": "coordination",
+  "status": "working",
+  "source_register": "sources/index.json",
+  "current_ir": "workspace/ir.json",
+  "review_log": "reviews/decisions.json",
+  "output_dir": "outputs"
+}

@@ -13,7 +13,7 @@ CONSTRAINT_STATES = {"pending", "passed", "failed", "review_required"}
 SOURCE_TYPES = {"drawing", "image", "point_cloud", "schedule", "inspection_record", "engineering_note", "model"}
 
 
-def validate(data):
+def validate(data, public_only=True):
     if not isinstance(data, dict):
         return ["root must be an object"]
     errors = []
@@ -23,10 +23,13 @@ def validate(data):
     if data["schema_version"] != "1.0-public":
         errors.append("schema_version must be 1.0-public")
     project = data["project"]
-    if not isinstance(project, dict) or not str(project.get("id", "")).startswith("DEMO-"):
-        errors.append("project.id must start with DEMO-")
-    if project.get("data_class") != "synthetic_or_redistributable":
-        errors.append("project.data_class must be synthetic_or_redistributable")
+    if not isinstance(project, dict) or not str(project.get("id", "")):
+        errors.append("project.id must be a non-empty string")
+    elif public_only and not project["id"].startswith("DEMO-"):
+        errors.append("public project.id must start with DEMO-")
+    allowed_data_classes = {"synthetic_or_redistributable"} if public_only else {"synthetic_or_redistributable", "private"}
+    if project.get("data_class") not in allowed_data_classes:
+        errors.append("project.data_class is not allowed for this validation mode")
     if project.get("target_maturity") not in {"concept", "coordination"}:
         errors.append("public target_maturity must be concept or coordination")
 

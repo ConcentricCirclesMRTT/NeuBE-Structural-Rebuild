@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "id": "domain-template",
+  "title": "Domain Template",
+  "description": "Replace with the reconstruction domain and its responsibility boundary.",
+  "target_objects": ["replace-me"],
+  "source_types": ["drawing", "image", "point_cloud", "schedule", "engineering_note"],
+  "entity_types": ["element", "joint", "assembly", "interface"],
+  "relation_types": ["connects", "contains", "supports", "contacts"],
+  "constraint_types": ["dimension", "incidence", "alignment", "continuity"],
+  "output_types": ["semantic_model", "coordination_model", "review_report"],
+  "maturity_ceiling": "coordination",
+  "validators": ["scripts/validate_domain.py"]
+}

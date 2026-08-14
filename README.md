@@ -6,6 +6,8 @@
 
 [中文](#中文说明) | [English](#english)
 
+> Fork this repository, teach it a structural domain, and publish traceable reconstruction results.
+
 ## 中文说明
 
 桌上有一摞几十年前的工程图。没有三维模型，没有完整数据库，只有平面图、剖面、尺寸、材料表和工程师留下的符号。
@@ -85,14 +87,49 @@ AI 负责提出有边界的解释候选；领域工具负责求解和验证确�
 
 ### 创建新的领域版本
 
-1. Fork 或复制本仓库。
-2. 保留 `SKILL.md` 中从证据到输出的六层契约。
-3. 在 `references/` 中定义领域本体和来源规范。
-4. 使用领域实体和类型化关系扩展公开 IR Schema。
-5. 在 `scripts/` 中添加确定性解析器、求解器和验证器。
-6. 添加可公开的合成案例，同时覆盖通过和阻塞状态。
-7. 定义成熟度等级、复核权限、不支持范围和发布阻塞条件。
-8. 在作出能力声明前，使用代表性任务对 Skill 进行前向测试。
+Fork 本仓库后，Domain Builder 可以从模板直接创建一个专业领域和重构项目：
+
+```bash
+python3 scripts/init_domain.py steel-frame --title "Steel Frame"
+python3 scripts/init_project.py demo-building \
+  --domain steel-frame \
+  --title "Demo Building"
+python3 scripts/validate_workspace.py
+```
+
+随后完成四件事：
+
+1. 在 `domains/steel-frame/` 定义领域本体、连接规则、容差、验证器和领域 Skill。
+2. 在 `projects/demo-building/sources/index.json` 登记证据，在 `workspace/ir.json` 保存当前可追溯模型。
+3. 把解析、求解或 CAD/BIM 工具生成的中间结果写入 `outputs/`，完成复核后把项目状态改为 `reviewed`。
+4. 显式发布选定结果：
+
+```bash
+python3 scripts/publish_result.py demo-building \
+  --artifact coordination-model.glb \
+  --artifact review-report.json
+```
+
+发布工具会生成 `releases/demo-building/manifest.json`，记录 domain、成熟度、输入 IR 哈希、制品哈希和发布时间。未完成复核、违反 IR 门禁或位于 `outputs/` 之外的文件不能发布。
+
+### 文件如何流动
+
+```text
+domains/<domain>/
+  reusable Skill + ontology + rules + validators
+
+projects/<project>/
+  sources/       source register; raw evidence is ignored by Git
+  workspace/     current IR and reproducible working state
+  reviews/       expert decisions
+  outputs/       generated intermediate results; ignored by Git
+
+releases/<project>/
+  manifest.json  immutable provenance and hashes
+  artifacts/     explicitly selected publishable results
+```
+
+这套分层让同一个 domain pack 服务多个项目，同时避免把客户源文件、缓存和一次性中间制品误放进公开仓库。完整规则见 [`references/repository-layout.md`](references/repository-layout.md)。
 
 不要把保密案例或私有规则目录复制到公开领域包。公开案例应当是完全合成或明确获得再分发授权的数据，并在保留推理难度的同时，避免让受保护的真实项目能够被反向恢复。
 
@@ -105,7 +142,14 @@ AI 负责提出有边界的解释候选；领域工具负责求解和验证确�
 - [`references/domain-profiles.md`](references/domain-profiles.md)：结构领域起始配置；
 - [`references/reconstruction-method.md`](references/reconstruction-method.md)：关联、拓扑、求解和变更控制方法；
 - [`references/public-safety-boundary.md`](references/public-safety-boundary.md)：公开发布和工程安全边界；
-- [`scripts/validate_public_ir.py`](scripts/validate_public_ir.py)：零第三方依赖的公开 IR 验证器。
+- [`references/repository-layout.md`](references/repository-layout.md)：目录职责和文件生命周期；
+- [`domains/_template/`](domains/_template/)：domain pack 模板；
+- [`projects/_template/`](projects/_template/)：重构项目模板；
+- [`scripts/init_domain.py`](scripts/init_domain.py) 与 [`scripts/init_project.py`](scripts/init_project.py)：初始化工具；
+- [`scripts/validate_workspace.py`](scripts/validate_workspace.py)：仓库和项目验证器；
+- [`scripts/publish_result.py`](scripts/publish_result.py)：带哈希的结果发布工具；
+- [`scripts/self_test.py`](scripts/self_test.py)：隔离环境中的完整生命周期测试；
+- [`.github/workflows/validate.yml`](.github/workflows/validate.yml)：每次 Push 和 Pull Request 的自动门禁。
 
 ### 验证示例
 
@@ -202,14 +246,49 @@ That stress test helped us extract the reusable core: separation of evidence and
 
 ## Create a domain-specific version
 
-1. Fork or copy this repository.
-2. Keep the six-layer evidence-to-output contract in `SKILL.md`.
-3. Define the domain ontology and source conventions in `references/`.
-4. Extend the public IR schema with domain entities and typed relationships.
-5. Add deterministic parsers, solvers, and validators under `scripts/`.
-6. Add synthetic or redistributable fixtures that contain both passing and blocked cases.
-7. Define maturity levels, review authority, unsupported cases, and release blockers.
-8. Forward-test the skill on representative tasks before making capability claims.
+After forking this repository, a Domain Builder can create a specialization and a reconstruction project directly from the templates:
+
+```bash
+python3 scripts/init_domain.py steel-frame --title "Steel Frame"
+python3 scripts/init_project.py demo-building \
+  --domain steel-frame \
+  --title "Demo Building"
+python3 scripts/validate_workspace.py
+```
+
+Then complete four steps:
+
+1. Define ontology, connection rules, tolerances, validators, and the domain Skill under `domains/steel-frame/`.
+2. Register evidence in `projects/demo-building/sources/index.json` and keep the traceable current model in `workspace/ir.json`.
+3. Write parser, solver, or CAD/BIM outputs to `outputs/`; after review, change project status to `reviewed`.
+4. Publish only selected results:
+
+```bash
+python3 scripts/publish_result.py demo-building \
+  --artifact coordination-model.glb \
+  --artifact review-report.json
+```
+
+The publisher creates `releases/demo-building/manifest.json` with the domain, maturity, input IR hash, artifact hashes, and publication time. It rejects unreviewed projects, invalid IR state, and files outside the project's output directory.
+
+## How files move
+
+```text
+domains/<domain>/
+  reusable Skill + ontology + rules + validators
+
+projects/<project>/
+  sources/       source register; raw evidence is ignored by Git
+  workspace/     current IR and reproducible working state
+  reviews/       expert decisions
+  outputs/       generated intermediate results; ignored by Git
+
+releases/<project>/
+  manifest.json  immutable provenance and hashes
+  artifacts/     explicitly selected publishable results
+```
+
+This separation lets one domain pack serve many projects without mixing customer evidence, caches, and one-off intermediate files into a public repository. See [`references/repository-layout.md`](references/repository-layout.md) for the complete policy.
 
 Do not copy confidential examples or private rule catalogs into a public specialization. A public example should be synthetic or explicitly redistributable and should preserve the reasoning challenge without allowing a protected project to be reconstructed.
 
@@ -222,7 +301,14 @@ Do not copy confidential examples or private rule catalogs into a public special
 - [`references/domain-profiles.md`](references/domain-profiles.md): starter structural profiles;
 - [`references/reconstruction-method.md`](references/reconstruction-method.md): association, topology, solving, and change-control method;
 - [`references/public-safety-boundary.md`](references/public-safety-boundary.md): publication and engineering safety limits;
-- [`scripts/validate_public_ir.py`](scripts/validate_public_ir.py): zero-dependency public IR validator.
+- [`references/repository-layout.md`](references/repository-layout.md): directory ownership and file lifecycle;
+- [`domains/_template/`](domains/_template/): domain-pack template;
+- [`projects/_template/`](projects/_template/): reconstruction-project template;
+- [`scripts/init_domain.py`](scripts/init_domain.py) and [`scripts/init_project.py`](scripts/init_project.py): initialization tools;
+- [`scripts/validate_workspace.py`](scripts/validate_workspace.py): repository and project validator;
+- [`scripts/publish_result.py`](scripts/publish_result.py): hash-based result publisher;
+- [`scripts/self_test.py`](scripts/self_test.py): isolated end-to-end lifecycle test;
+- [`.github/workflows/validate.yml`](.github/workflows/validate.yml): automatic gates for every push and pull request.
 
 ## Validate the example
 

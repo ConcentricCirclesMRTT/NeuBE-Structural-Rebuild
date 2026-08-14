@@ -1,0 +1,21 @@
+.DS_Store
+Thumbs.db
+__pycache__/
+*.py[cod]
+.venv/
+.idea/
+.vscode/
+/output/
+
+# Project evidence is private by default. Commit only synthetic or cleared fixtures explicitly.
+projects/*/sources/*
+!projects/*/sources/index.json
+
+# Caches and working exports are reproducible and stay out of version control.
+projects/*/workspace/cache/
+projects/*/outputs/*
+!projects/_template/outputs/.gitkeep
+
+# Release artifacts are explicit; temporary packaging files are not.
+releases/**/*.tmp
+releases/**/*.partial

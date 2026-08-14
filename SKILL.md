@@ -1,6 +1,6 @@
 ---
 name: general-structure-reconstruction
-description: Reconstruct physical structures from drawings, images, point clouds, schedules, inspection records, and engineering notes as traceable, reviewable models. Use for buildings, bridges, frames, trusses, supports, platforms, equipment structures, and other constructed assemblies when identifying elements, associating evidence across sources, recovering topology and interfaces, solving geometry, managing ambiguity, validating constraints, or preparing coordination-grade CAD/BIM/digital-twin outputs. Also use for structural reconstruction, drawing-to-model, scan-to-model, as-built modeling, 结构重构, 图纸转模型, 逆向建模, 竣工模型, or 工程数字孪生.
+description: Build domain-specific structural reconstruction skills and use them to reconstruct physical structures from drawings, images, point clouds, schedules, inspection records, and engineering notes as traceable, reviewable models. Use when a Domain Builder needs to create or extend a domain pack, initialize a reconstruction project, manage evidence and generated files, recover topology and interfaces, validate constraints, review ambiguity, or publish coordination-grade CAD/BIM/digital-twin results. Also use for structural reconstruction templates, domain packs, drawing-to-model, scan-to-model, as-built modeling, 结构重构, 领域模板, 图纸转模型, 逆向建模, 竣工模型, or 工程数字孪生.
 ---
 
 # NeuBE-Structural-Rebuild
@@ -8,6 +8,25 @@ description: Reconstruct physical structures from drawings, images, point clouds
 Neural Building Engine Structural Rebuild.
 
 Turn heterogeneous evidence into a reviewable model of a physical structure. Treat visual plausibility as a hypothesis, not proof.
+
+## Choose the operating mode
+
+- `Domain Builder`: create or extend reusable ontology, rules, validators, and a domain-specific Skill under `domains/<domain>/`.
+- `Project Builder`: apply one domain pack to evidence and working state under `projects/<project>/`.
+- `Publisher`: promote only reviewed outputs into `releases/<project>/` with hashes and provenance.
+
+Read [references/repository-layout.md](references/repository-layout.md) before creating, moving, committing, or publishing project files.
+
+## Bootstrap a domain and project
+
+Create a domain pack instead of editing `_template` directly:
+
+```bash
+python3 scripts/init_domain.py <domain-id> --title "<Domain title>"
+python3 scripts/init_project.py <project-id> --domain <domain-id> --title "<Project title>"
+```
+
+Customize `domains/<domain>/domain.json`, its `SKILL.md`, ontology, rules, and validators. Keep reusable domain knowledge out of project directories. Keep project evidence, interpretations, reviews, and outputs out of the domain package.
 
 ## Preserve six layers
 
@@ -86,9 +105,19 @@ Ask one decision-oriented question at a time. Include observations, alternatives
 - State what is observed, interpreted, solved, unresolved, unsupported, and omitted.
 - Do not claim structural adequacy, code compliance, detailing, or fabrication readiness unless separately calculated and authorized.
 
+### 9. Validate and publish results
+
+- Run `python3 scripts/validate_workspace.py --project <project-id>` before review.
+- Set project status to `reviewed` only after the declared reviewer resolves release-blocking decisions.
+- Write intermediate generated files under `projects/<project>/outputs/`; they are ignored by Git by default.
+- Publish selected results with `python3 scripts/publish_result.py <project-id> --artifact <relative-output-path>`.
+- Commit `releases/<project>/manifest.json` and its selected artifacts only when their data classification permits publication.
+- Never copy private raw evidence into a public release to make it self-contained.
+
 ## Use bundled resources
 
 - Start from [assets/public-ir-template.json](assets/public-ir-template.json).
 - Use [assets/public-ir.schema.json](assets/public-ir.schema.json) as the public field contract.
 - Use [assets/synthetic-frame-example.json](assets/synthetic-frame-example.json) only as a synthetic format example.
 - Read [references/public-safety-boundary.md](references/public-safety-boundary.md) before adding real data or domain rules.
+- Use `domains/_template/` and `projects/_template/` only through the initialization scripts; do not store active work in template directories.

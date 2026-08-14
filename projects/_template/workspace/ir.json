@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0-public",
+  "project": {
+    "id": "DEMO-TEMPLATE",
+    "structure_class": "unspecified",
+    "data_class": "synthetic_or_redistributable",
+    "target_maturity": "coordination"
+  },
+  "sources": [],
+  "observations": [],
+  "hypotheses": [],
+  "semantic_model": {
+    "elements": [],
+    "joints": [],
+    "assemblies": [],
+    "interfaces": []
+  },
+  "constraints": [],
+  "reviews": [],
+  "outputs": []
+}
