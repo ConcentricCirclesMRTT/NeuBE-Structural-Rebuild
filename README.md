@@ -4,11 +4,15 @@
 
 **Open AI Agent Skill Template · Domain Pack Builder · Traceable 3D Reconstruction**
 
-### Build Everything in 3D. Precisely.
+## EVERYTHING IN 3D.
+
+**Build it precisely. Build it as an AI Agent Skill.**
 
 ![Engineering evidence is assembled into a traceable structural model](assets/neube-structural-rebuild-banner.png)
 
 [中文](#中文说明) | [English](#english)
+
+**Start here / 从这里开始： [Create a Domain 3D Rebuild Skill](references/create-domain-3d-rebuild-skill.md)**
 
 > Fork this repository, teach it a structural domain, and publish traceable reconstruction results.
 >
@@ -20,11 +24,15 @@
 
 NeuBE-Structural-Rebuild 是一个**开源、可 Fork 的 AI Agent Skill 模板**，用于把图纸和行业专家知识转化为精确、可追溯、可复核的三维重构流程。它不是一个只会生成漂亮模型的单体 AI 应用，而是一套可以教给 AI Agent 的工作方法、领域知识接口、文件结构、验证器和发布门禁。
 
+**Everything in 3D** 是这套模板的目标：任何依靠图纸、测量和专业规则理解实体的行业，都可以创建自己的 3D Rebuild Skill。它强调领域的广度，但不降低结果的证据要求。
+
 - 根目录 [`SKILL.md`](SKILL.md) 定义 AI Agent 应当怎样读取证据、管理歧义、调用工具和停止等待复核；
 - `domains/<domain>/` 把某个行业的术语、对象、连接规则和验收标准教给 Agent；
 - `projects/<project>/` 与 `releases/<project>/` 保存可追溯的项目过程和经过审查的结果。
 
 Fork 这个仓库，不只是复制一套代码，而是获得一个可以继续训练专业工作方式的 AI Agent Skill 基座。
+
+第一次创建领域 Skill？阅读双语指南：[如何创建 Domain 3D Rebuild Skill](references/create-domain-3d-rebuild-skill.md)。
 
 桌上有一摞几十年前的工程图。没有三维模型，没有完整数据库，只有平面图、剖面、尺寸、材料表和工程师留下的符号。
 
@@ -178,6 +186,7 @@ releases/<project>/
 - [`references/reconstruction-method.md`](references/reconstruction-method.md)：关联、拓扑、求解和变更控制方法；
 - [`references/public-safety-boundary.md`](references/public-safety-boundary.md)：公开发布和工程安全边界；
 - [`references/repository-layout.md`](references/repository-layout.md)：目录职责和文件生命周期；
+- [`references/create-domain-3d-rebuild-skill.md`](references/create-domain-3d-rebuild-skill.md)：从专家知识到可发布 Domain Skill 的双语指南；
 - [`template.json`](template.json)：机器可读的模板身份、标语、来源与许可证；
 - [`LICENSE`](LICENSE) 与 [`NOTICE`](NOTICE)：Apache-2.0 授权和需要保留的来源声明；
 - [`CITATION.cff`](CITATION.cff)：论文、报告和公开 domain pack 的引用信息；
@@ -228,11 +237,15 @@ Built from the [NeuBE-Structural-Rebuild template](https://github.com/Concentric
 
 NeuBE-Structural-Rebuild is an **open, forkable AI Agent Skill template** for turning drawings and domain expertise into precise, traceable, and reviewable 3D reconstruction workflows. It is not a monolithic AI application that merely generates attractive models. It packages an agent workflow, domain-knowledge interface, file lifecycle, validators, and release gates that can be taught to an AI agent.
 
+**Everything in 3D** is the ambition: every drawing-, measurement-, and rule-centered profession can create its own 3D Rebuild Skill. The breadth of possible domains never lowers the evidence standard for each result.
+
 - The root [`SKILL.md`](SKILL.md) tells the AI agent how to read evidence, manage ambiguity, use tools, and stop for review.
 - `domains/<domain>/` teaches the agent a profession's vocabulary, entities, connection rules, and acceptance criteria.
 - `projects/<project>/` and `releases/<project>/` preserve traceable work and reviewed results.
 
 Forking this repository gives you more than a codebase: it gives you an AI Agent Skill foundation that can learn a professional way of working.
+
+Creating your first domain skill? Read the bilingual guide: [How to Create a Domain 3D Rebuild Skill](references/create-domain-3d-rebuild-skill.md).
 
 On the table is a stack of engineering drawings from decades ago. There is no 3D model and no complete database, only plans, sections, dimensions, schedules, and symbols left by engineers.
 
@@ -384,6 +397,7 @@ Do not copy confidential examples or private rule catalogs into a public special
 - [`references/reconstruction-method.md`](references/reconstruction-method.md): association, topology, solving, and change-control method;
 - [`references/public-safety-boundary.md`](references/public-safety-boundary.md): publication and engineering safety limits;
 - [`references/repository-layout.md`](references/repository-layout.md): directory ownership and file lifecycle;
+- [`references/create-domain-3d-rebuild-skill.md`](references/create-domain-3d-rebuild-skill.md): bilingual guide from expert knowledge to a publishable Domain Skill;
 - [`template.json`](template.json): machine-readable template identity, tagline, origin, and license;
 - [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE): Apache-2.0 terms and retained origin notice;
 - [`CITATION.cff`](CITATION.cff): citation metadata for papers, reports, and public domain packs;

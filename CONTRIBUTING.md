@@ -26,6 +26,10 @@ Build parsers, solvers, CAD/BIM adapters, viewers, review interfaces, or synthet
 
 ## Minimum viable Domain Pack / 最小可用领域包
 
+Follow the bilingual [Create a Domain 3D Rebuild Skill guide](references/create-domain-3d-rebuild-skill.md) for the complete domain-to-release workflow.
+
+完整的领域定义、Skill 编写、评测与发布流程，请参考双语[《创建 Domain 3D Rebuild Skill》指南](references/create-domain-3d-rebuild-skill.md)。
+
 A first contribution does not need to solve an entire industry. Start with one narrow, testable slice:
 
 1. one sanitized, synthetic, or redistributable representative drawing;

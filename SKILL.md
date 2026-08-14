@@ -9,13 +9,15 @@ Neural Building Engine Structural Rebuild.
 
 Use this repository as a forkable AI Agent Skill template. Turn heterogeneous evidence and expert knowledge into a reviewable model of a physical structure. Treat visual plausibility as a hypothesis, not proof.
 
-Build Everything in 3D. Precisely.
+Everything in 3D. Precisely. As an AI Agent Skill.
 
 ## Choose the operating mode
 
 - `Domain Builder`: create or extend reusable ontology, rules, validators, and a domain-specific Skill under `domains/<domain>/`.
 - `Project Builder`: apply one domain pack to evidence and working state under `projects/<project>/`.
 - `Publisher`: promote only reviewed outputs into `releases/<project>/` with hashes and provenance.
+
+When creating a new domain pack, read [references/create-domain-3d-rebuild-skill.md](references/create-domain-3d-rebuild-skill.md) before initialization.
 
 ## Co-create with domain experts
 
