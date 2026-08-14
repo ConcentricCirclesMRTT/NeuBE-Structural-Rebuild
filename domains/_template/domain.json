@@ -1,5 +1,9 @@
 {
   "schema_version": "1.0",
+  "built_from": {
+    "template": "NeuBE-Structural-Rebuild",
+    "repository": "https://github.com/ConcentricCirclesMRTT/NeuBE-Structural-Rebuild"
+  },
   "id": "domain-template",
   "title": "Domain Template",
   "description": "Replace with the reconstruction domain and its responsibility boundary.",

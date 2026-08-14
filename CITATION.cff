@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this template or publish a domain pack derived from it, please cite it as below."
+title: "NeuBE-Structural-Rebuild"
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/ConcentricCirclesMRTT/NeuBE-Structural-Rebuild"
+url: "https://github.com/ConcentricCirclesMRTT/NeuBE-Structural-Rebuild"
+date-released: 2026-08-14
+authors:
+  - name: "NeuBE-Structural-Rebuild contributors"

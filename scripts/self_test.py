@@ -38,6 +38,13 @@ def main():
 
         project_path = repo / "projects" / "sample-project" / "project.json"
         project = json.loads(project_path.read_text(encoding="utf-8"))
+        if project.get("built_from", {}).get("template") != "NeuBE-Structural-Rebuild":
+            raise AssertionError("project does not preserve template origin")
+        original_origin = project["built_from"]
+        project["built_from"] = {**original_origin, "repository": "https://example.invalid/removed-origin"}
+        write_json(project_path, project)
+        run(repo, "scripts/validate_workspace.py", "--project", "sample-project", expect=1)
+        project["built_from"] = original_origin
         project["status"] = "reviewed"
         write_json(project_path, project)
         artifact = repo / "projects" / "sample-project" / "outputs" / "model.json"
@@ -46,6 +53,10 @@ def main():
 
         manifest_path = repo / "releases" / "sample-project" / "manifest.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if manifest.get("built_from") != project.get("built_from"):
+            raise AssertionError("release does not preserve project template origin")
+        if manifest.get("template_license") != "Apache-2.0":
+            raise AssertionError("release does not preserve template license")
         published = repo / "releases" / "sample-project" / manifest["artifacts"][0]["path"]
         if manifest["artifacts"][0]["sha256"] != digest(published):
             raise AssertionError("published artifact hash does not match")

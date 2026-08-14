@@ -9,6 +9,8 @@ Neural Building Engine Structural Rebuild.
 
 Turn heterogeneous evidence into a reviewable model of a physical structure. Treat visual plausibility as a hypothesis, not proof.
 
+Build Everything in 3D. Precisely.
+
 ## Choose the operating mode
 
 - `Domain Builder`: create or extend reusable ontology, rules, validators, and a domain-specific Skill under `domains/<domain>/`.
@@ -112,6 +114,7 @@ Ask one decision-oriented question at a time. Include observations, alternatives
 - Write intermediate generated files under `projects/<project>/outputs/`; they are ignored by Git by default.
 - Publish selected results with `python3 scripts/publish_result.py <project-id> --artifact <relative-output-path>`.
 - Commit `releases/<project>/manifest.json` and its selected artifacts only when their data classification permits publication.
+- Preserve the `built_from` origin and template license in project and release manifests.
 - Never copy private raw evidence into a public release to make it self-contained.
 
 ## Use bundled resources

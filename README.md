@@ -2,11 +2,15 @@
 
 **Neural Building Engine Structural Rebuild**
 
+### Build Everything in 3D. Precisely.
+
 ![Engineering evidence is assembled into a traceable structural model](assets/neube-structural-rebuild-banner.png)
 
 [中文](#中文说明) | [English](#english)
 
 > Fork this repository, teach it a structural domain, and publish traceable reconstruction results.
+>
+> **Built from the [NeuBE-Structural-Rebuild template](https://github.com/ConcentricCirclesMRTT/NeuBE-Structural-Rebuild).**
 
 ## 中文说明
 
@@ -110,7 +114,7 @@ python3 scripts/publish_result.py demo-building \
   --artifact review-report.json
 ```
 
-发布工具会生成 `releases/demo-building/manifest.json`，记录 domain、成熟度、输入 IR 哈希、制品哈希和发布时间。未完成复核、违反 IR 门禁或位于 `outputs/` 之外的文件不能发布。
+发布工具会生成 `releases/demo-building/manifest.json`，记录模板来源、许可证、domain、成熟度、输入 IR 哈希、制品哈希和发布时间。未完成复核、违反 IR 门禁或位于 `outputs/` 之外的文件不能发布。
 
 ### 文件如何流动
 
@@ -143,6 +147,10 @@ releases/<project>/
 - [`references/reconstruction-method.md`](references/reconstruction-method.md)：关联、拓扑、求解和变更控制方法；
 - [`references/public-safety-boundary.md`](references/public-safety-boundary.md)：公开发布和工程安全边界；
 - [`references/repository-layout.md`](references/repository-layout.md)：目录职责和文件生命周期；
+- [`template.json`](template.json)：机器可读的模板身份、标语、来源与许可证；
+- [`LICENSE`](LICENSE) 与 [`NOTICE`](NOTICE)：Apache-2.0 授权和需要保留的来源声明；
+- [`CITATION.cff`](CITATION.cff)：论文、报告和公开 domain pack 的引用信息；
+- [`CONTRIBUTING.md`](CONTRIBUTING.md)：安全贡献领域包和通用能力的规则；
 - [`domains/_template/`](domains/_template/)：domain pack 模板；
 - [`projects/_template/`](projects/_template/)：重构项目模板；
 - [`scripts/init_domain.py`](scripts/init_domain.py) 与 [`scripts/init_project.py`](scripts/init_project.py)：初始化工具；
@@ -162,6 +170,18 @@ python3 scripts/validate_public_ir.py assets/synthetic-frame-example.json
 ```text
 OK: assets/synthetic-frame-example.json is a valid public structure reconstruction IR
 ```
+
+### Fork、署名与许可证
+
+本仓库使用 [Apache License 2.0](LICENSE)。你可以 Fork、修改、商用和发布自己的 domain pack 或重构系统，但分发时必须遵守许可证并保留 [`NOTICE`](NOTICE) 中适用的声明。Apache-2.0 同时提供明确的贡献者专利授权，适合作为长期演进的工程基础仓库。
+
+通过 GitHub 的 **Use this template** 创建仓库后，建议把下面这行保留在 README 首屏：
+
+```markdown
+Built from the [NeuBE-Structural-Rebuild template](https://github.com/ConcentricCirclesMRTT/NeuBE-Structural-Rebuild).
+```
+
+初始化脚本会把同一来源写入 domain 和 project manifest，发布工具继续把它写入 release manifest。这样即使仓库被下载、迁移或制品脱离 GitHub 页面，仍然可以知道它从哪个方法模板构建。项目自己的代码、领域规则、数据和输出可以另行声明许可证，但不得删除上游仍然适用的 Apache-2.0 与 NOTICE 信息。
 
 ### 能力边界
 
@@ -269,7 +289,7 @@ python3 scripts/publish_result.py demo-building \
   --artifact review-report.json
 ```
 
-The publisher creates `releases/demo-building/manifest.json` with the domain, maturity, input IR hash, artifact hashes, and publication time. It rejects unreviewed projects, invalid IR state, and files outside the project's output directory.
+The publisher creates `releases/demo-building/manifest.json` with the template origin, license, domain, maturity, input IR hash, artifact hashes, and publication time. It rejects unreviewed projects, invalid IR state, and files outside the project's output directory.
 
 ## How files move
 
@@ -302,6 +322,10 @@ Do not copy confidential examples or private rule catalogs into a public special
 - [`references/reconstruction-method.md`](references/reconstruction-method.md): association, topology, solving, and change-control method;
 - [`references/public-safety-boundary.md`](references/public-safety-boundary.md): publication and engineering safety limits;
 - [`references/repository-layout.md`](references/repository-layout.md): directory ownership and file lifecycle;
+- [`template.json`](template.json): machine-readable template identity, tagline, origin, and license;
+- [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE): Apache-2.0 terms and retained origin notice;
+- [`CITATION.cff`](CITATION.cff): citation metadata for papers, reports, and public domain packs;
+- [`CONTRIBUTING.md`](CONTRIBUTING.md): rules for contributing domain packs and reusable capabilities safely;
 - [`domains/_template/`](domains/_template/): domain-pack template;
 - [`projects/_template/`](projects/_template/): reconstruction-project template;
 - [`scripts/init_domain.py`](scripts/init_domain.py) and [`scripts/init_project.py`](scripts/init_project.py): initialization tools;
@@ -321,6 +345,18 @@ Expected result:
 ```text
 OK: assets/synthetic-frame-example.json is a valid public structure reconstruction IR
 ```
+
+## Forking, attribution, and license
+
+This repository is licensed under the [Apache License 2.0](LICENSE). You may fork, modify, use commercially, and distribute your own domain pack or reconstruction system, provided that redistribution follows the license and retains the applicable notices from [`NOTICE`](NOTICE). Apache-2.0 also includes an explicit contributor patent grant, making it suitable for a long-lived engineering foundation.
+
+After creating a repository with GitHub's **Use this template**, keep this line visible near the top of your README:
+
+```markdown
+Built from the [NeuBE-Structural-Rebuild template](https://github.com/ConcentricCirclesMRTT/NeuBE-Structural-Rebuild).
+```
+
+The initialization scripts carry the same origin into domain and project manifests, and the publisher carries it into every release manifest. Provenance therefore survives downloads, repository moves, and detached artifacts. A derived project may license its own code, domain rules, data, and outputs separately, but it must not remove upstream Apache-2.0 and NOTICE information where those terms still apply.
 
 ## Scope
 

@@ -31,6 +31,7 @@ def main():
     args = parser.parse_args()
     project_dir = ROOT / "projects" / args.project_id
     try:
+        template = json.loads((ROOT / "template.json").read_text(encoding="utf-8"))
         project = json.loads((project_dir / "project.json").read_text(encoding="utf-8"))
         ir_path = project_dir / project["current_ir"]
         ir = json.loads(ir_path.read_text(encoding="utf-8"))
@@ -76,6 +77,8 @@ def main():
         artifacts.append({"path": str(Path("artifacts") / relative), "sha256": digest(target), "bytes": target.stat().st_size})
     manifest = {
         "schema_version": "1.0",
+        "built_from": project["built_from"],
+        "template_license": template["license"],
         "project_id": args.project_id,
         "domain_ref": project["domain_ref"],
         "maturity": project["target_maturity"],
