@@ -1,6 +1,7 @@
 {
   "schema_version": "1.0",
   "name": "NeuBE-Structural-Rebuild",
+  "artifact_type": "ai-agent-skill-template",
   "tagline": "Build Everything in 3D. Precisely.",
   "invitation": "If your field has drawings, it deserves a domain pack.",
   "repository": "https://github.com/ConcentricCirclesMRTT/NeuBE-Structural-Rebuild",

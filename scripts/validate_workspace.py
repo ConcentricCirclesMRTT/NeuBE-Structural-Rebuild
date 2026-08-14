@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOMAIN_KEYS = {"schema_version", "built_from", "id", "title", "description", "source_types", "entity_types", "relation_types", "constraint_types", "output_types", "maturity_ceiling", "validators"}
 PROJECT_KEYS = {"schema_version", "built_from", "id", "title", "domain_ref", "data_class", "target_maturity", "status", "source_register", "current_ir", "review_log", "output_dir"}
 ORIGIN_KEYS = {"template", "repository"}
-TEMPLATE_KEYS = {"schema_version", "name", "tagline", "repository", "license", "attribution"}
+TEMPLATE_KEYS = {"schema_version", "name", "artifact_type", "tagline", "repository", "license", "attribution"}
 
 
 def read_json(path, errors):
@@ -56,6 +56,8 @@ def validate_template(errors):
             errors.append(f"repository: missing {required}")
     if manifest.get("license") != "Apache-2.0":
         errors.append("template.json: license must match LICENSE (Apache-2.0)")
+    if manifest.get("artifact_type") != "ai-agent-skill-template":
+        errors.append("template.json: artifact_type must be ai-agent-skill-template")
     return {"template": manifest.get("name"), "repository": manifest.get("repository")}
 
 

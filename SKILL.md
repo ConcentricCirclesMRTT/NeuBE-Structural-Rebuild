@@ -7,7 +7,7 @@ description: Turn expert knowledge from drawing-centered industries into domain-
 
 Neural Building Engine Structural Rebuild.
 
-Turn heterogeneous evidence into a reviewable model of a physical structure. Treat visual plausibility as a hypothesis, not proof.
+Use this repository as a forkable AI Agent Skill template. Turn heterogeneous evidence and expert knowledge into a reviewable model of a physical structure. Treat visual plausibility as a hypothesis, not proof.
 
 Build Everything in 3D. Precisely.
 
