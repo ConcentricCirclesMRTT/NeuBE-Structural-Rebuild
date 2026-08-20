@@ -18,6 +18,8 @@
 >
 > **Built from the [NeuBE-Structural-Rebuild template](https://github.com/ConcentricCirclesMRTT/NeuBE-Structural-Rebuild).**
 
+[Homepage 主页](https://concentriccirclesmrtt.github.io/neube-sr-showcase/index.html)
+
 ## 中文说明
 
 ### 这是什么
@@ -215,7 +217,7 @@ OK: assets/synthetic-frame-example.json is a valid public structure reconstructi
 
 本仓库使用 [Apache License 2.0](LICENSE)。你可以 Fork、修改、商用和发布自己的 domain pack 或重构系统，但分发时必须遵守许可证并保留 [`NOTICE`](NOTICE) 中适用的声明。Apache-2.0 同时提供明确的贡献者专利授权，适合作为长期演进的工程基础仓库。
 
-Copyright © 2026 浙江每日仝泰科技有限公司、浙江每日互动研究院有限公司。
+Copyright © 2026 浙江每日互动研究院有限公司，浙江每日仝泰科技有限公司。
 
 通过 GitHub 的 **Use this template** 创建仓库后，建议把下面这行保留在 README 首屏：
 
@@ -426,7 +428,7 @@ OK: assets/synthetic-frame-example.json is a valid public structure reconstructi
 
 This repository is licensed under the [Apache License 2.0](LICENSE). You may fork, modify, use commercially, and distribute your own domain pack or reconstruction system, provided that redistribution follows the license and retains the applicable notices from [`NOTICE`](NOTICE). Apache-2.0 also includes an explicit contributor patent grant, making it suitable for a long-lived engineering foundation.
 
-Copyright © 2026 浙江每日仝泰科技有限公司 and 浙江每日互动研究院有限公司.
+Copyright © 2026 Zhejiang Merit Interactives Reseaerch Institute and MRTT AI.
 
 After creating a repository with GitHub's **Use this template**, keep this line visible near the top of your README:
 
